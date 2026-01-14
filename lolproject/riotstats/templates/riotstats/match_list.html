@@ -1,0 +1,26 @@
+<h1>{{ summoner.username }}#{{ summoner.tagline }}</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Match ID</th>
+      <th>Champion</th>
+      <th>Kills</th>
+      <th>Deaths</th>
+      <th>Assists</th>
+      <th>Win</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for stat in stats %}
+    <tr>
+      <td>{{ stat.champion }}</td>
+      <td>{{ stat.kills }}</td>
+      <td>{{ stat.deaths }}</td>
+      <td>{{ stat.assists }}</td>
+      <td>{% if stat.winloss %}✅{% else %}❌{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
