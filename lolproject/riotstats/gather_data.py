@@ -4,7 +4,7 @@ from django.utils.dateparse import parse_datetime
 from riotwatcher import RiotWatcher, LolWatcher, ApiError
 from riotstats.serializers import summonerSerializer, matchSerializer, participantStatsSerializer
 
-API_KEY = "RGAPI-d6e4dfd2-dc9b-4550-93dc-8c4387ffb8ca"
+API_KEY = "RGAPI-e08dce26-7d6b-47b2-863a-8e2737e8b916"
 accountRegion = "AMERICAS"
 summonerRegion = "NA1"
 gameName = "Caseoh"
@@ -85,19 +85,19 @@ def get_match_details(summonerObj, matchIds, region):
         
 
 
-sumObject = get_summoner_puuid(gameName, tagLine, accountRegion)
-# print(sumObject.puuid)
-match_ids = get_match_ids(summonerRegion, sumObject.puuid)
-# print(match_ids)
-get_match_details(sumObject, match_ids, summonerRegion)
-firstSum = Summoner.objects.first()
-firstMatch = Match.objects.first()
-print(firstSum)
-print(firstMatch)
-stats = ParticipantStats.objects.get(summoner=firstSum, match=firstMatch)
-import json
-data = participantStatsSerializer(stats)
-print(json.dumps(data.data, indent=4))
-Summoner.objects.all().delete()
-Match.objects.all().delete()
-ParticipantStats.objects.all().delete()
+# sumObject = get_summoner_puuid(gameName, tagLine, accountRegion)
+# # print(sumObject.puuid)
+# match_ids = get_match_ids(summonerRegion, sumObject.puuid)
+# # print(match_ids)
+# get_match_details(sumObject, match_ids, summonerRegion)
+# firstSum = Summoner.objects.first()
+# firstMatch = Match.objects.first()
+# print(firstSum)
+# print(firstMatch)
+# stats = ParticipantStats.objects.get(summoner=firstSum, match=firstMatch)
+# import json
+# data = participantStatsSerializer(stats)
+# print(json.dumps(data.data, indent=4))
+# Summoner.objects.all().delete()
+# Match.objects.all().delete()
+# ParticipantStats.objects.all().delete()

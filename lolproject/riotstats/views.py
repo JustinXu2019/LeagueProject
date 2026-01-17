@@ -1,13 +1,9 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, get_object_or_404
 from .gather_data import get_match_details, get_match_ids, get_summoner_puuid
-from django.shortcuts import render, get_object_or_404
 from .models import Summoner, Match, ParticipantStats
-from .serializers import summonerSeralizer, matchSeralizer, participantStatsSeralizer
-from rest_framework import viewsets
-
-class participantModelViewSet(viewsets.ModelViewSet):
-    querySet = ParticipantStats.objects.all()
-    serializer_class = participantStatsSeralizer
+from .serializers import participantStatsSerializer
+from rest_framework import response
+from django.http import JsonResponse
 
 def match_list(request):
     # Get the summoner from the database
@@ -21,3 +17,38 @@ def match_list(request):
         "summoner": summoner,
         "stats": stats,
     })
+
+def get_and_return_summoner_data(request):
+    accountRegion = {
+        'NA1': "AMERICAS",
+        'EUW1': "EUROPE",
+        'KR': "ASIA"
+    }
+    username = request.GET.get("username")
+    tagline = request.GET.get("tagline")
+    region = request.GET.get("region")
+
+    print(f"username is {username}, tagline is {tagline}, region is {region}")
+
+
+    if not username or not tagline:
+        return JsonResponse({'error': 'Missing username or tagline'}, status=400)
+
+    summonerObj = get_summoner_puuid(username, tagline, accountRegion[region])
+    matchIds = get_match_ids(region, summonerObj.puuid)
+    get_match_details(summonerObj, matchIds, region)
+
+    summonerStats = ParticipantStats.objects.filter(summoner=summonerObj)
+    print(len(summonerStats))
+    seralizer = participantStatsSerializer(summonerStats, many=True)
+
+    data = seralizer.data
+
+    return JsonResponse(data, safe=False)
+
+
+
+
+
+
+

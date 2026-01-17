@@ -12,7 +12,7 @@ class Match(models.Model):
 class ParticipantStats(models.Model):
     summoner = models.ForeignKey(Summoner, on_delete=models.CASCADE)
     match = models.ForeignKey(Match, on_delete=models.CASCADE)
-    champion = models.CharField()
+    champion = models.CharField(max_length=30)
     kills = models.IntegerField()
     deaths = models.IntegerField()
     assists = models.IntegerField()
