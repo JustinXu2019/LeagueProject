@@ -1,0 +1,82 @@
+.search-container {       
+  display: flex;
+  justify-content: center;
+  align-items: center;    
+  width: 100%;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 5px;
+  font-family: sans-serif;
+}
+
+.label-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.dropdown-table, 
+.search-input {
+  height: 45px;             /* Fixed height for alignment */
+  padding: 0 15px;          /* Horizontal padding */
+  font-size: 16px;
+  border: 1px solid #ccc;   /* Unified border */
+  box-sizing: border-box;   /* Ensures padding doesn't add to width */
+  font-family: sans-serif;
+}
+
+.dropdown-table {
+  width: 160px;             /* Fixed width for the button */
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;      /* Centers text vertically */
+  border-radius: 6px 6px 6px 6px; 
+}
+
+.dropdown-content {
+  display: block;
+  position: absolute;
+  top: 100%;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(53, 53, 53, 0.2);
+}
+
+.dropdown-content a {
+  color: rgb(255, 255, 255);
+  border: .5px solid #ffffff;
+  border-radius: 6px 6px 6px 6px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown {
+  position: relative; /* This keeps the menu attached to the button */
+}
+
+.search-input {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 300px;
+  font-size: 16px;
+}
+
+.dropdown-content a:hover {
+  background-color: #444; /* Add hover effect for links */
+}
+
+.arrow {
+  font-size: 10px;
+  margin-left: 10px;
+  transition: transform 0.3s ease; /* Makes the flip look smooth */
+}
+
+.arrow.open {
+  transform: rotate(180deg);
+}

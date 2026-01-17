@@ -1,0 +1,24 @@
+.app-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* This locks the Search Bar to the dead center */
+  min-height: 100vh;
+  position: relative;
+}
+
+/* This is your "Search Bar Group" */
+.search-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 2; /* Ensures search bar stays on top of any shadows */
+}
+
+/* This is your "Image Group" */
+.image-wrapper {
+  position: absolute;
+  /* Push the bottom of the image group 40px above the screen's center line */
+  bottom: calc(55%); 
+  left: 50%;
+  transform: translateX(-60%); /* Centers the image horizontally */
+}

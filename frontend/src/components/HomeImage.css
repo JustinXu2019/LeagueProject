@@ -1,0 +1,6 @@
+.home-image {
+    width: 100%;       /* Fill the container Home.jsx gives it */
+    max-width: 800px;  /* Don't let it get awkwardly huge on giant monitors */
+    height: auto;      /* Keep the original aspect ratio */
+    display: block;    /* Removes the tiny gap at the bottom of images */ 
+}
