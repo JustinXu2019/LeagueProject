@@ -9,7 +9,7 @@ class summonerSerializer(serializers.ModelSerializer):
 class matchSerializer(serializers.ModelSerializer):
     class Meta:
         model = Match
-        fields = ['match_id', 'queue_type']
+        fields = '__all__'
 
 class participantStatsSerializer(serializers.ModelSerializer):
     summoner = summonerSerializer(read_only=True)
@@ -17,5 +17,5 @@ class participantStatsSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = ParticipantStats
-        fields = ['summoner', 'match', 'champion', 'kills', 'deaths', 'assists', 'winloss']
+        fields = '__all__'
 

@@ -36,9 +36,10 @@ def get_and_return_summoner_data(request):
 
     summonerObj = get_summoner_puuid(username, tagline, accountRegion[region])
     matchIds = get_match_ids(region, summonerObj.puuid)
+    print(matchIds)
     get_match_details(summonerObj, matchIds, region)
 
-    summonerStats = ParticipantStats.objects.filter(summoner=summonerObj)
+    summonerStats = ParticipantStats.objects.filter(summoner=summonerObj).order_by('-match__game_start')
     print(len(summonerStats))
     seralizer = participantStatsSerializer(summonerStats, many=True)
 

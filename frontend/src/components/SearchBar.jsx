@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import './SearchBar.css'
-
-let userData;
+import { useNavigate } from 'react-router-dom'
 
 function SearchBar() {
 
+  const navigate = useNavigate();
   const [region, setRegion] = useState("NA1");
   const [searchInput, setSearchInput] = useState("");
   const regionNames = {
@@ -31,20 +31,8 @@ function SearchBar() {
 
   const handleSearchSubmission = async (e, searchInput) => {
     e.preventDefault()
-    const split = searchInput.split("#")
-    const username = split[0]
-    const tagline = split[1]
-    if (!username || !tagline) return;
-    try {
-        const response = await fetch(`http://localhost:8000/api/search/?username=${username}&tagline=${tagline}&region=${region}`);
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
-        userData = await response.json()
-        console.log("Data received from Django:", data);
-    } catch (error) {
-        console.error("Fetch error:", error);
-    }
+    const [username, tagline] = searchInput.split("#");
+    navigate(`/results/${region}/${username}/${tagline}`);
   }
 
   return (
@@ -85,4 +73,4 @@ function SearchBar() {
   );
 }
 
-export { SearchBar, userData }
+export { SearchBar }
